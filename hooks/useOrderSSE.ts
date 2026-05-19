@@ -11,7 +11,7 @@ export function useOrderSSE(orderId: string | null, token?: string | null) {
   useEffect(() => {
     if (!orderId || !token) return;
 
-    const url = `/api/orders/${orderId}/status-stream?token=${encodeURIComponent(token)}`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/orders/${orderId}/status-stream?token=${encodeURIComponent(token)}`;
     const es = new EventSource(url);
 
     es.onopen = () => setConnected(true);

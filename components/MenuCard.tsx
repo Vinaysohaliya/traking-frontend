@@ -34,16 +34,17 @@ export function MenuCard({ item }: MenuCardProps) {
           {item.description}
         </p>
 
-        <div className="mt-4 flex items-center justify-between">
-          <span className="text-orange-600 font-bold text-xl">
-            ${item.price.toFixed(2)}
-          </span>
-
-          {cartItem ? (
-            <span className="text-sm text-orange-500 font-medium bg-orange-50 px-3 py-1 rounded-full">
-              {cartItem.quantity} in cart
+        <div className="mt-4 flex items-center justify-between gap-2">
+          <div className="flex flex-col min-w-0">
+            <span className="text-orange-600 font-bold text-xl">
+              ${item.price.toFixed(2)}
             </span>
-          ) : null}
+            {cartItem && (
+              <span className="text-xs text-orange-500 font-medium">
+                {cartItem.quantity} in cart
+              </span>
+            )}
+          </div>
 
           <button
             onClick={() => {
@@ -53,7 +54,7 @@ export function MenuCard({ item }: MenuCardProps) {
                 icon: '🛒',
               });
             }}
-            className="btn-primary text-sm py-2 px-4"
+            className="btn-primary text-sm py-2 px-4 shrink-0"
             data-testid={`add-to-cart-${item.id}`}
           >
             Add to Cart

@@ -83,7 +83,7 @@ export function MenuPage() {
       {totalItems > 0 && (
         <button
           onClick={() => setCartOpen(true)}
-          className="fixed bottom-6 right-6 btn-primary flex items-center gap-2 shadow-lg rounded-full px-6 py-3 text-base"
+          className="fixed bottom-20 sm:bottom-6 right-4 sm:right-6 btn-primary flex items-center gap-2 shadow-lg rounded-full px-6 py-3 text-base"
         >
           <span>🛒</span>
           <span>View Cart</span>

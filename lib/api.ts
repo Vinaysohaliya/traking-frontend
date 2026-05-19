@@ -1,6 +1,6 @@
 import { MenuItem, Order, CreateOrderPayload } from '@/types';
 
-const BASE = '/api';
+const BASE = process.env.NEXT_PUBLIC_API_URL!;
 
 function authHeaders(token?: string | null): HeadersInit {
   return token

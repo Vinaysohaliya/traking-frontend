@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar />
-        <main className="max-w-6xl mx-auto px-4 py-6">{children}</main>
+        <main className="max-w-6xl mx-auto px-4 py-6 pb-24 sm:pb-6">{children}</main>
         <Toaster
           position="bottom-right"
           toastOptions={{

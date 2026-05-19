@@ -2,9 +2,11 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { MenuItem } from '@/types';
 import { useCart } from '@/hooks/useCart';
+import { useAuth } from '@/hooks/useAuth';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -25,6 +27,8 @@ function FoodPlaceholder() {
 export function MenuCard({ item }: MenuCardProps) {
   const { addItem, items } = useCart();
   const cartItem = items.find((i) => i.menuItem.id === item.id);
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const [imgError, setImgError] = useState(false);
   const hasImage = !imgError && item.image && item.image.trim() !== '';
 
@@ -68,6 +72,11 @@ export function MenuCard({ item }: MenuCardProps) {
 
           <button
             onClick={() => {
+              if (!isAuthenticated()) {
+                toast.error('Please sign in to add items to cart', { duration: 2500 });
+                router.push('/login');
+                return;
+              }
               addItem(item);
               toast.success(`${item.name} added to cart`, {
                 duration: 2000,
